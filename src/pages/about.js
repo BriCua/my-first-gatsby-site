@@ -1,14 +1,12 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import Layout from "../components/Layout";
 import { SEO } from "../components/seo";
 
 const AboutPage = () => {
   return (
-    <main>
-      <h1>About This Page</h1>
+    <Layout pageTitle="About This Page">
       <p>This is the about page of my Gatsby Site, accessible at /about. Cool!</p>
-      <Link to="/">Back To Home</Link>.
-    </main>
+    </Layout>
   );
 };
 

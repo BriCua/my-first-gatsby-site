@@ -1,5 +1,4 @@
 /* This component is used to generate SEO meta tags for each page, with customizable props for title, description, image, and children */
-
 import React from "react";
 import { useSiteMetadata } from "../hooks/useSiteMetadata";
 

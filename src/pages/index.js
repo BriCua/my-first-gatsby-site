@@ -1,19 +1,17 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import Layout from "../components/Layout";
 import { SEO } from "../components/seo";
 
 const IndexPage = () => {
   return (
-    <main>
-      <h1>Welcome to my Gatsby site!!!</h1>
+    <Layout pageTitle="Home Page">
       <p>I'm making this by following the Gatsby Tutorial.</p>
-      <Link to="/about">About This Site</Link>
-    </main>
+    </Layout>
   );
 };
 
 export default IndexPage;
 
 export const Head = () => (
-  <SEO  />
+  <SEO title="Home Page" description="Home page of my First Gatsby site" pathname="/" />
 );
