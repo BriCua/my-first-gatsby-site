@@ -6,7 +6,17 @@ module.exports = {
     title: 'My First Gatsby Site',
     description: 'A tutorial site built by following the Gatsby tutorial.',
     image: '/icon.png',
-    siteUrl: `http://localhost:8000`,
+    siteUrl: `https://bricua-s-first-gatsby-site.netlify.app/`,
   },
-  plugins: [],
+  plugins: [
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: `blog`,
+        path: `${__dirname}/blog`,
+      }
+    }
+  ],
 }
