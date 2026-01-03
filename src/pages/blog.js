@@ -1,14 +1,19 @@
 import * as React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
 import { Seo } from "../components/Seo";
 
-const BlogPage = ({data}) => {
+const BlogPage = ({ data }) => {
   return (
     <Layout pageTitle="My Blog Posts">
       <ul>
-        {data.allFile.nodes.map((node) => (
-          <li key={node.name}>{node.name}</li>
+        {data.allMdx.nodes.map((node) => (
+          <article key={node.id}>
+            <h2>
+              <Link to={`/blog/${node.frontmatter.slug}`}>{node.frontmatter.title}</Link>
+            </h2>
+            <p>Posted: {node.frontmatter.date}</p>
+          </article>
         ))}
       </ul>
     </Layout>
@@ -16,10 +21,15 @@ const BlogPage = ({data}) => {
 };
 
 export const query = graphql`
-  query {
-    allFile {
+  query ($formatString: String = "DD-MM-YYYY") {
+    allMdx(sort: { frontmatter: { date: DESC } }) {
       nodes {
-        name
+        frontmatter {
+          date(formatString: $formatString)
+          title
+          slug
+        }
+        id
       }
     }
   }
