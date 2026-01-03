@@ -9,6 +9,9 @@ exports.createPages = async ({ graphql, actions }) => {
           frontmatter {
             slug
           }
+          internal {
+            contentFilePath
+          }
         }
       }
     }
@@ -20,10 +23,14 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const posts = result.data.allMdx.nodes
 
+  const blogPostTemplate = require.resolve(
+  "./src/templates/blog-post.js"
+)
+
   posts.forEach((post, index) => {
     createPage({
       path: `/blog/${post.frontmatter.slug}`,
-      component: require.resolve("./src/templates/blog-post.js"),
+      component: `${blogPostTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
       context: {
         id: post.id,
         previousId: posts[index + 1]?.id || null, // older
